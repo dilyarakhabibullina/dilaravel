@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 $title = 'My first page';
 $text='My name is Dilyara';
+$newsTitle = 'My second page';
+$newsText='This is page for future news';
 
 Route::get('/', function () use ($text, $title) {
     return <<<php
@@ -37,3 +39,27 @@ Route::get('/', function () use ($text, $title) {
     
     php;
 });
+
+Route::get('news', function () use ($newsText, $newsTitle) {
+    return <<<php
+    <!doctype html>
+    <html lang="en">
+    <head> 
+    <title>$newsTitle</title>
+    </head>
+    <body>
+    <h1>$newsText<h1>
+    <h4>
+    <ul>
+    <li>Breaking news No.1</li>
+    <li>Breaking news No.2</li>
+    <li>Breaking news No.3</li>
+    </ul>
+    
+    </body>
+    </html>
+    
+    php;
+});
+
+Route::view('/about', 'about');
