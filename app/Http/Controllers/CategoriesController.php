@@ -10,21 +10,21 @@ class CategoriesController extends Controller
 {
 
     
-    public function index() {
-        $categories = [];
-        return view('categories')->with('categories', Categories::getcategories());
+    public function index(Categories $categories) {
+      //  $categories = [];
+        return view('categories')->with('categories', $categories->getcategories());
     }
 
-    public function show($id) {
-        return view('news.index')->with('news', News::getNewsByCategories($id));
+    public function show(News $news, $id) {
+        return view('news.index')->with('news', $news->getNewsByCategories($id));
     }
 
-    public function showBySlug($slug) {
-        return view('news.index')->with('news', News::getNewsByCategorySlug($slug));
+    public function showBySlug(News $news, $slug) {
+        return view('news.index')->with('news', $news->getNewsByCategorySlug($slug));
     }
 
-    public function showBySlugId($slug, $id) {
-        return view('news.index')->with('news', News::getNewsByCategoryIdSlug($slug, $id));
+    public function showBySlugId(News $news, $slug, $id) {
+        return view('news.index')->with('news', $news->getNewsByCategoryIdSlug($slug, $id));
     }
 
     

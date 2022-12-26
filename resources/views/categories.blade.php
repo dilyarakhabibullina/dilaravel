@@ -1,15 +1,14 @@
-@extends('layouts.app') 
-
+@extends('layouts.app')
 
 @section('title')
 @parent | Главнвя
 @endsection
-@section('menu')
-@include('menu')
 
+@section('header')
+    @include('menu')
 @endsection
-@section('content')
 
+@section('content')
 <h1>Категории</h1>
 
 @forelse($categories as $category)
@@ -19,7 +18,10 @@
 @empty
 Нет категорий
 @endforelse
+             
+@endsection  
+
+@section('footer')
+    @include('footer')
 @endsection
-
-
 

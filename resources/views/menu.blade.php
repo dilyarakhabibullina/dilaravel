@@ -9,7 +9,6 @@
 
 <!-- <a href="/auth">Авторизоваться</a></br> -->
 
-
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -34,7 +33,7 @@
                     <a href="/news">Новости</a>
                     </ul>
                     <ul class="navbar-nav me-auto">
-                    <a href="/addNew">Добавить новость</a>
+                    <a href="/admin">Админка</a>
                     </ul>
                     
              

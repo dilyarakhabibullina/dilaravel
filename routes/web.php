@@ -35,21 +35,21 @@ Route::get('/', [
 
 
 
-Route::view('/', 'menu');
+Route::view('/', 'home');
 
 Route::view('/auth', 'reg');
 
-Route::view('/addNew', 'addNew');
+
 
 Route::view('/about', 'about');
 Route::get('/categories', [CategoriesController::class, 'index']);
 
 Route::prefix('news')->group(function() {
-Route::get('/', [NewsController::class, 'index']);
-Route::get('/{id}', [NewsController::class, 'show'])->name('showId');
-Route::get('/categories/{id}', [CategoriesController::class, 'show']);
-Route::get('/category/{slug}', [CategoriesController::class, 'showBySlug']);
-Route::get('/category/{slug}/{id}', [CategoriesController::class, 'showBySlugId']);
+    Route::get('/', [NewsController::class, 'index']);
+    Route::get('/{id}', [NewsController::class, 'show'])->name('showId');
+    Route::get('/categories/{id}', [CategoriesController::class, 'show']);
+    Route::get('/category/{slug}', [CategoriesController::class, 'showBySlug']);
+    Route::get('/category/{slug}/{id}', [CategoriesController::class, 'showBySlugId']);
 //->name('showId');
 });
 
@@ -58,6 +58,9 @@ Route::prefix('admin')->group(function() {
     Route::get('/', [IndexController::class, 'index'])->name('admin.index');
     Route::get('/test1', [IndexController::class, 'test1'])->name('admin.test1');
     Route::get('/test2', [IndexController::class, 'test2'])->name('admin.test2');
+    Route::get('/addNew', [IndexController::class, 'addNew'])->name('admin.addNew');
+    Route::match(['get', 'post'], '/create', [IndexController::class, 'create'])->name('admin.create');
+
 });
 Auth::routes();
 

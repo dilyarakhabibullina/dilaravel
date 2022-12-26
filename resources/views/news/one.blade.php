@@ -1,10 +1,15 @@
-@extends('layouts.main')
+@extends('layouts.app')
+
 @section('title')
 @parent | Новость
 @endsection
 
+@section('header')
+    @include('menu')
+@endsection
+
 @section('content')
-@if($news)
+  @if($news)
 @if(!$news['isPrivate'])
 <h1>Новость номер {{$news['id']}} </h1>
 <hr>
@@ -18,6 +23,11 @@ no news with this id
 <br/>
 <br/>
 <br/>
-<a href="/news"><button>Назад к списку новостей</button></a>
+<a href="/news"><button>Назад к списку новостей</button></a> 
+
+@endsection  
+@section('footer')
+    @include('footer')
 @endsection
-       
+
+

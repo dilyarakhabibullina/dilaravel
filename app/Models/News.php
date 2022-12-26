@@ -8,7 +8,7 @@ use App\Models\Categories;
 class News
 {
     public Categories $category;
-    public static $news = [
+    public array $news = [
         ['id' => 1,
         'categories_id' => 1,
         'title' => 'Новость первая',
@@ -138,12 +138,12 @@ class News
     //     $this->category = $category;
     // }
 
-    public static function getNews() {
-        return News::$news;
+    public function getNews() {
+        return $this->news;
     }
 
-    public static function getNewsById($id) {
-        foreach (News::getNews() as $news) {
+    public function getNewsById($id) {
+        foreach ($this->getNews() as $news) {
             if ($news['id'] == $id) {
                 return $news;
             }
@@ -151,9 +151,9 @@ class News
         return null;
     }
 
-    public static function getNewsByCategories($id) {
+    public function getNewsByCategories($id) {
         //$this->getCategories();
-        foreach (static::$news as $new) {
+        foreach ($this->news as $new) {
             if ($new['categories_id'] == $id) {
                 $news[] =$new;
                 }
@@ -164,11 +164,11 @@ class News
     }
 
 
-    public static function getNewsByCategorySlug($slug): array
+    public function getNewsByCategorySlug($slug): array
     {
         $category_id = Categories::getCategoryIdBySlug($slug);
         $news = [];
-        foreach (static::getNews() as $item) {
+        foreach ($this->getNews() as $item) {
             if ($item['categories_id'] == $category_id) {
                 $news[] = $item;
             }
@@ -176,11 +176,11 @@ class News
         return $news;
     }
 
-    public static function getNewsByCategoryIdSlug($slug, $id): array
+    public function getNewsByCategoryIdSlug($slug, $id): array
     {
         $category_id = Categories::getCategoryIdBySlug($slug);
         $news = [];
-        foreach (static::getNews() as $item) {
+        foreach ($this->getNews() as $item) {
             if ($item['categories_id'] == $category_id && $item['id'] == $id) {
                 $news[] = $item;
             }

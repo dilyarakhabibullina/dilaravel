@@ -1,13 +1,14 @@
 @extends('layouts.app')
-@extends('menu')
 @section('title')
 @parent | Новости
 @endsection
 
+@section('header')
+    @include('menu')
+@endsection
+
 @section('content')
-
-
-<div class="container">
+  <div class="container">
     
     <div class="row justify-content-center">
    
@@ -29,4 +30,10 @@
     </div>
 </div>
 
+                
+@endsection  
+@section('footer')
+    @include('footer')
 @endsection
+
+

@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    public function index() {
-        $news = [];
-        return view('news.index')->with('news', News::getNews());
+    public function index(News $news) {
+        //$news = [];
+        return view('news.index')->with('news', $news->getNews());
     }
 
-    public function show($id) {
-        return view('news.one')->with('news', News::getNewsById($id));
+    public function show($id, News $news) {
+        return view('news.one')->with('news', $news->getNewsById($id));
     }
 
 }
