@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Categories;
@@ -22,16 +23,25 @@ class IndexController extends Controller
             return response()->json($news->getNews())->setEncodingOptions(JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
         
     }
-
-    public function addNew() {
-        return view('admin.addNew');
-    }
-
-    public function create(Request $request, Categories $categories) {
+       public function create(Request $request, Categories $categories, News $news) {
         if ($request->isMethod('post')) {
-            //dump($request->all());
-            $request->flash();
-            return redirect()->route('admin.create');
+            $data = $news->getNews();
+            
+            $data[] = [
+                'categories_id' => (int) $request->category,
+                'title' => $request->title,
+                'inform' => $request->text,
+                'isPrivate' => isset($request->isPrivate)
+            ];
+
+        $id = array_key_last($data);
+        $data[$id]['id'] = $id;
+      //  dd($data);вот причина всех бед- после дампа ничего не выполняется
+        Storage::disk('local')->put('news.json', json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+           
+            
+            return redirect()->route('admin.create')->with('success', 'Новость успешно добавлена!');
+                               
         }
 
 

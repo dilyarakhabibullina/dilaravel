@@ -33,6 +33,9 @@
                     <a href="/news">Новости</a>
                     </ul>
                     <ul class="navbar-nav me-auto">
+                    <a href="/myRequest">Заказать выгрузку</a>
+                    </ul>
+                    <ul class="navbar-nav me-auto">
                     <a href="/admin">Админка</a>
                     </ul>
                     

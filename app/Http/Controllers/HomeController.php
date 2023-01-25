@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Models\News;
+use App\Models\Categories;
 
 class HomeController extends Controller
 {
@@ -21,8 +24,31 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
+    // public function index()
+    // {
+    //     return view('home');
+    // }
+
+
+    public function index(Request $request) {
+        if ($request->isMethod('post')) {
+            $request->flash();
+            
+            return 
+            dump($request->all());
+           //redirect()->route('home');
+           
+        }
+
+
         return view('home');
     }
+
+    // public function saveNews () {
+    //     $news = DB::()
+    //     // Storage::disk('local')->put('news.json', json_encode($news->getNews(), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+    // }
+    // public function saveCats (Categories $cats) {
+    //     Storage::disk('local')->put('cats.json', json_encode($cats->getCategories(), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+    // }
 }

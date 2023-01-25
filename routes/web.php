@@ -1,7 +1,9 @@
 <?php
 use App\Http\Controllers\Admin\IndexController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\MyRequestController;
 
 
 /*
@@ -36,13 +38,15 @@ Route::get('/', [
 
 
 Route::view('/', 'home');
-
+Route::match(['get', 'post'], '/home', [HomeController::class, 'index'])->name('home');
 Route::view('/auth', 'reg');
 
 
 
 Route::view('/about', 'about');
 Route::get('/categories', [CategoriesController::class, 'index']);
+
+
 
 Route::prefix('news')->group(function() {
     Route::get('/', [NewsController::class, 'index']);
@@ -54,14 +58,21 @@ Route::prefix('news')->group(function() {
 });
 
 
+
+
 Route::prefix('admin')->group(function() {
     Route::get('/', [IndexController::class, 'index'])->name('admin.index');
     Route::get('/test1', [IndexController::class, 'test1'])->name('admin.test1');
     Route::get('/test2', [IndexController::class, 'test2'])->name('admin.test2');
-    Route::get('/addNew', [IndexController::class, 'addNew'])->name('admin.addNew');
+    //Route::get('/addNew', [IndexController::class, 'addNew'])->name('admin.addNew');
     Route::match(['get', 'post'], '/create', [IndexController::class, 'create'])->name('admin.create');
 
 });
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::match(['get', 'post'], '/myRequest', [MyRequestController::class, 'myRequest'])->name('myRequest');
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/saveNews', [HomeController::class, 'saveNews'])->name ('saveNews');
+Route::get('/saveCats', [HomeController::class, 'saveCats'])->name ('saveCats');

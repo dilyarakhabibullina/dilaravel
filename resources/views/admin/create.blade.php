@@ -21,11 +21,7 @@
 @csrf
 
 
-<div class="form-group">
-<label for="newsTitle">Название новости</label>
-<input type="text" name="title" id="newsTitle" class="form-control" value="{{ old('title') }}">
-<br>
-</div>
+
 
 <div class="form-group">
 <label for="newsCategory">Категория новости</label>
@@ -37,6 +33,12 @@
     <option value="0" selected>Нет категории</option>
     @endforelse
 </select>
+<br>
+</div>
+
+<div class="form-group">
+<label for="newsTitle">Название новости</label>
+<input type="text" name="title" id="newsTitle" class="form-control" value="{{ old('title') }}">
 <br>
 </div>
 

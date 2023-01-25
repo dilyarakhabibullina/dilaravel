@@ -10,10 +10,10 @@
 
 @section('content')
   @if($news)
-@if(!$news['isPrivate'])
-<h1>Новость номер {{$news['id']}} </h1>
+@if(!$news->isPrivate)
+<h1>Новость номер {{$news->id}} </h1>
 <hr>
-{{$news['inform']}}
+{{$news->inform}}
 @else
 LOG IN to USE CONTENT 
 @endif

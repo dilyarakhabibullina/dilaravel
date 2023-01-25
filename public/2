@@ -1,0 +1,24 @@
+POST /myRequest HTTP/1.1
+Accept:                    text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Accept-Encoding:           gzip, deflate, br
+Accept-Language:           ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7
+Cache-Control:             max-age=0
+Connection:                keep-alive
+Content-Length:            150
+Content-Type:              application/x-www-form-urlencoded
+Cookie:                    XSRF-TOKEN=eyJpdiI6IjlEK1Q0dmdxZ2Z0cTJuajlQMGpMOVE9PSIsInZhbHVlIjoidm1JMk1DdmVYQnJHaEtiK3NRNjRpRXA0eldzeG9hN05NV0VqYnBRalNDT280ZDlMcE13VGpMYkJ2Z09tcHJVeG9BbjVHczFOdDQ0ekhoYUlWcnl1d3pNM0pBamNuNk9JN2dYK1RBTktnTjlMUmNiZU41bkVDZ2dCVnFiT2lLd1kiLCJtYWMiOiJlMzE4Y2QyMzg4MTFkMzE4NzdjZTIzZTYxNmQ1YzU1NTk0ZGM3Njc5ZGNjOTNjNThjZDhhZDkzYWRiOTM3MmUyIiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6Imd0a0JxWGI4Mk8rWkVLa29raTh1QVE9PSIsInZhbHVlIjoiVS9ZVThQcmUzaENHbzB6YlJwYXltZUdkNTZHY0FsWmhvSGxwT0VSSTVlSXNhOGZGM3BydFptRmRkNDFWUmpuVEcvaTdLV2t4a3JjbE1jVGd5MitPOWxpc25nZ0M5eU51TzBENlBUeUtqYVlxY09wN3dkaVp0Zy84M0MvN2tHUHYiLCJtYWMiOiIzY2U2ZDk2MGFkNTljMzVmMjZhOGJkYWFmNWNkOThlZDVhNjRjYmEyMTc1NGY5YjU0MDE0ZTU2ZjJlZGM5YmNkIiwidGFnIjoiIn0%3D
+Host:                      localhost
+Origin:                    http://localhost
+Referer:                   http://localhost/myRequest
+Sec-Ch-Ua:                 "Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"
+Sec-Ch-Ua-Mobile:          ?0
+Sec-Ch-Ua-Platform:        "Windows"
+Sec-Fetch-Dest:            document
+Sec-Fetch-Mode:            navigate
+Sec-Fetch-Site:            same-origin
+Sec-Fetch-User:            ?1
+Upgrade-Insecure-Requests: 1
+User-Agent:                Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36
+Cookie: XSRF-TOKEN=A6Qn1VAtTWGqjTtiuGLDYM9nqAGQm2ZpEGJrPYp3; laravel_session=n0K93DAF1KwWRPI2NqcBCNQVoKxOfkWqIFrm5K7c
+
+_token=A6Qn1VAtTWGqjTtiuGLDYM9nqAGQm2ZpEGJrPYp3&personName=Dilyara&telNo=2222&mail=3333333%40rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr&query=yyyyyyy%0D%0A

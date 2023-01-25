@@ -18,10 +18,10 @@
 
                 <div class="card-body">
                 @forelse ($news as $item)
-    <!-- <a href="/news/<?=$item['id']?>">Новость номер <?=$item['id']?></a> -->
-    <!-- <a href="{{route('showId', [$item['categories_id'], $item['id']])}}">{{$item['title']}}</a><br> -->
-    <a href="{{route('showId', $item['id'])}}">{{$item['title']}}</a><br>
-@empty
+                <a href="{{route('showId', $item->id) }}">{{ $item->title }}</a><br>
+
+                @empty
+   
 <p>No news</p>
 @endforelse
                 </div>
