@@ -20,6 +20,18 @@ class NewsController extends Controller
     
     public function create(Request $request, Category $category, News $news) {
         if ($request->isMethod('post')) {
+            $tableNameCategory = (new Category())->getTable();
+          $this->validate($request, [
+                'title'=>'required|min:3|max:20',
+                'inform'=> ['required', 'min:5'],
+                "isPrivate"=>'sometimes|in:1'
+                // ,'categories_id'=>"required|exists:{$tableNameCategory}, id"
+
+          ], [
+                // 'title.required' => 'Нам надо знать ваш e-mail!'
+                //, 'inform.required' => 'поле :attribute обязательно!'
+             ], News::attributeNames());
+           // dd($temp);
             
             
             // $data = [
@@ -34,6 +46,16 @@ class NewsController extends Controller
            // $news->title = $request->title;
 
             $data = $request->except('_token');
+
+// $data=[
+//             // 'id'=>$request->id, 
+//             'categories_id'=>(int)$request->categories_id,
+//             'title'=>$request->title, 
+//             'inform'=>$request->inform,
+//             'isPrivate'=>$request->isPivate
+//     ];
+
+
           // 
             $news->fill($data);
             // dump($data);
@@ -41,21 +63,45 @@ class NewsController extends Controller
             $news->save();
            // $id = $news->id;
             
-            return redirect()->route('admin.create')->with('success', 'Новость успешно добавлена!');
+            return redirect()->route('admin.index')->with('success', 'Новость успешно добавлена!');
                                
-        }
+       }
 
 
         return view('admin.create', [
             'news' => $news,
             'cats' => Category::all()
-        ]);
+           
+        ]); 
     }
 
 
-    public function store(News $news){
+    public function store (Request $request, News $news){
+        //dd($news);
+    //$news->fill($request->except("_token"));
+       // dd($request);
+    
+        $news->fill([
+            // 'id'=>$request->id, 
+            'categories_id'=>$request->categories_id,
+            'title'=>$request->title, 
+            'inform'=>$request->inform,
+            'isPrivate'=>$request->isPivate
+    ]);
+   // dd($news);
+   // $news->fill($news); 
+   
+
+       $news->isPrivate = isset($request->isPrivate);
+       $news->save();
+//dd($news);
+        return redirect()->route('news.index')->with('success', 'Новость изменена успешно!');
 
     }
+
+    // public function store(News $news){
+
+    // }
 
     public function edit(News $news, Category $category){
         // if ($request->isMethod('post')){
@@ -75,13 +121,13 @@ class NewsController extends Controller
        // dd($request);
     
         $news->fill([
-            'id'=>$request->id, 
+            // 'id'=>$request->id, 
             'categories_id'=>$request->categories_id,
             'title'=>$request->title, 
             'inform'=>$request->inform,
             'isPrivate'=>$request->isPivate
     ]);
-   //  dd($news);
+   // dd($news);
    // $news->fill($news); 
    
 
@@ -95,7 +141,8 @@ class NewsController extends Controller
 
         
     }
-   public function destroy(News $news) {
+   public function destroy (News $news) {
+    
         $news->delete();
         return redirect()->route('admin.index')->with('success', 'Новость удалена успешно!');
 

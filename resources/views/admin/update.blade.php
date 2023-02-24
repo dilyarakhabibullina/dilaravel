@@ -18,6 +18,7 @@
                 <div class="card-body">
                     
                 <form action ="{{ route('admin.update', $news)}}" method='post'>
+                <!-- <input type="hidden" name="_method" value="PATCH">    -->
 @csrf
 
 <input type="text" name="id" id="newsId" class="form-control" value="{{ $news->id ?? old('id') }}">
@@ -27,14 +28,13 @@
 <select name="categories_id" id="newsCategory" class="form-control" >
   
       <!-- <option {{ old('categories_id') }} selected>{{ $news->categories_id ?? old('categories_id') }}  </option> -->
-      <option {{ old('categories_id') }} selected>{{ $item['categories'] ?? old('categories_id') }}  </option>
+      <!-- <option {{ old('categories_id') }} selected>{{ $item['categories'] ?? old('categories_id') }}  </option> -->
 
 @forelse($cats as $item)
 
 
-<option value="{{ $item['id'] }}">{{ $item['categories'] }}</option>
-
-    <!-- <option {{ $news->categories_id }} 
+<!-- <option value="{{ $item['id'] }}">{{ $item['categories'] }}</option> -->
+<option value="{{ $item['id'] }}" {{$news->categories_id == $item['id'] ? 'selected' : ''}}>{{ $item['categories'] }}</option>    <!-- <option {{ $news->categories_id }} 
     value="{{ $item['id'] }}" >{{ $item['categories'] }}</option> -->
     @empty
     <option value="0" selected>Нет категории</option>
@@ -63,6 +63,7 @@
 <br>
 <div class="form-group">
 <input type="submit" class="btn btn-outline-primary" value="Сохранить новость">
+
 </div>
 </form>
 

@@ -13,4 +13,15 @@ public function category(){
         return $this->belongsTo(Category::class, 'category_id')->first();
 }
    
+public static function attributeNames(){
+    return
+     ['title'=> '"Название новости"',
+    'inform'=>'"Текст новости"'
+];
+}
+
+
+
+
+
     }

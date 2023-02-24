@@ -11,12 +11,12 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-       Schema::table('news', function Blueprint $table);
-       $table-> foreign('categories_id')->references('id')->on('categories');
-    }
-
+   public function up()
+   {
+      Schema::table('news', function (Blueprint $table) {
+         $table->foreign('categories_id')->references('id')->on('categories');
+      });
+   }
     /**
      * Reverse the migrations.
      *

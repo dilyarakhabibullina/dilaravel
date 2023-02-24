@@ -18,6 +18,7 @@
                 <div class="card-body">
                     
                 <form action ="{{ route('admin.create')}}" method='post'>
+                
 @csrf
 
 
@@ -25,10 +26,15 @@
 
 <div class="form-group">
 <label for="newsCategory">Категория новости</label>
+@foreach($errors->get('categories_id') as $error)<div class="alert alert-danger" role="alert">
+    {{$error}}</div>
+    @endforeach
 <select name="categories_id" id="newsCategory" class="form-control" >
     @forelse($cats as $item)
-    <option @if ($item['id'] == old('category')) selected
-    @endif value="{{ $item['id']}}" >{{ $item['category'] }}</option>
+    
+    <!-- <option value="{{ $item['id'] }}" {{$news->categories_id == $item['id'] ? 'selected' : ''}}>{{ $item['categories'] }}</option>   -->
+    <option @if ($item['id'] == old('categories_id')) selected
+                                                @endif value="{{ (int)$item['id']}}">{{ $item['categories'] }}</option>
     @empty
     <option value="0" selected>Нет категории</option>
     @endforelse
@@ -38,17 +44,35 @@
 
 <div class="form-group">
 <label for="newsTitle">Название новости</label>
+
+    @foreach($errors->get('title') as $error)<div class="alert alert-danger" role="alert">
+    {{$error}}</div>
+    @endforeach
+
 <input type="text" name="title" id="newsTitle" class="form-control" value="{{ old('title') }}">
 <br>
 </div>
 
 <div class="form-group">
 <label for="newsText">Текст новости</label>
-<textarea name="inform" id="newsText" class="form-control">{{ old('text') }}</textarea><br>
+
+@foreach($errors->get('inform') as $error)<div class="alert alert-danger" role="alert">
+    {{$error}}</div>
+    @endforeach
+
+
+<textarea name="inform" id="newsText" class="form-control">{{ $news->inform ?? old('inform') }}</textarea><br>
 </div>
 
+
+
+
 <div class="form-check">
-    <input @if(old('isPrivate') == "1") checked @endif id="newsPrivate" name="isPrivate" type="checkbox" value="1" class="form-check-input">
+@foreach($errors->get('isPrivate') as $error)<div class="alert alert-danger" role="alert">
+    {{$error}}</div>
+    @endforeach
+    <input @if($news->isPrivate ==1 || old('isPrivate') == 1) checked @endif id="newsPrivate" name="isPrivate" type="checkbox" value="1" class="form-check-input">
+    <!-- <input @if(old('isPrivate') == "1") checked @endif id="newsPrivate" name="isPrivate" type="checkbox" value="1" class="form-check-input"> -->
     <label for="newsPrivate">Приватная</label>
     <br>
 </div>

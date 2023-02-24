@@ -41,9 +41,6 @@ Route::get('/', [
 Route::view('/', 'home');
 Route::match(['get', 'post'], '/home', [HomeController::class, 'index'])->name('home');
 Route::view('/auth', 'reg');
-
-
-
 Route::view('/about', 'about');
 Route::get('/categories', [CategoriesController::class, 'index']);
 
@@ -65,12 +62,14 @@ Route::prefix('admin')->group(function() {
     // Route::get('/', [IndexController::class, 'index'])->name('admin.index');
     Route::get('/test1', [IndexController::class, 'test1'])->name('admin.test1');
     Route::get('/test2', [IndexController::class, 'test2'])->name('admin.test2');
-    //Route::get('/addNew', [IndexController::class, 'addNew'])->name('admin.addNew');
+    Route::get('/addNew', [IndexController::class, 'addNew'])->name('admin.addNew');
     Route::match(['get', 'post'], '/create', [AdminNewsController::class, 'create'])->name('admin.create');
     Route::get('/', [AdminNewsController::class, 'index'])->name('admin.index');
     Route::get('/edit/{news}', [AdminNewsController::class, 'edit'])->name('admin.edit');
     Route::post('/update/{news}', [AdminNewsController::class, 'update'])->name('admin.update');
     Route::get('/destroy/{news}', [AdminNewsController::class, 'destroy'])->name('admin.destroy');
+
+  //  Route::resource('news', AdminNewsController::class)->except(['show']);
 });
 
 
