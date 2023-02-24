@@ -40,7 +40,8 @@ class HomeController extends Controller
            
         }
 
-
+        // $collection = collect([1, 2, 3]);
+        // dd($collection->min());
         return view('home');
     }
 

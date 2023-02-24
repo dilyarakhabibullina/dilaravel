@@ -25,7 +25,7 @@
 
 <div class="form-group">
 <label for="newsCategory">Категория новости</label>
-<select name="category" id="newsCategory" class="form-control" >
+<select name="categories_id" id="newsCategory" class="form-control" >
     @forelse($cats as $item)
     <option @if ($item['id'] == old('category')) selected
     @endif value="{{ $item['id']}}" >{{ $item['category'] }}</option>
@@ -44,7 +44,7 @@
 
 <div class="form-group">
 <label for="newsText">Текст новости</label>
-<textarea name="text" id="newsText" class="form-control">{{ old('text') }}</textarea><br>
+<textarea name="inform" id="newsText" class="form-control">{{ old('text') }}</textarea><br>
 </div>
 
 <div class="form-check">

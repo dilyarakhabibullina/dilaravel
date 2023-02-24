@@ -25,6 +25,7 @@
 <p>No news</p>
 @endforelse
                 </div>
+                {{ $news->links() }}
             </div>
         </div>
     </div>

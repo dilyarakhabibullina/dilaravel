@@ -12,9 +12,8 @@ class CategoriesController extends Controller
 {
    
     public function index() {
-        $categories = Category::all();
-       // dd($categories);
-       return view('categories')->with('categories', $categories);
+      // $categories= DB::table('categories')->get();
+       return view('categories')->with('categories', Category::all());
     }
 
     public function show($id) {
@@ -40,8 +39,7 @@ class CategoriesController extends Controller
         $category = Category::query()->where('slug', $slug)->first();
      //   $news = News::query()->where('categories_id', $category->id)->get()->paginate(3);
       $news = News::query()->where('categories_id', $category->id)->paginate(3);
-        return view('news.index')->with('news', $news)->
-        with('categories', $category);
+        return view('news.index')->with('news', $news)->with('categories', $category);
     }
 
     // {

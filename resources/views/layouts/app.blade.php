@@ -18,11 +18,14 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
+
+@if (session('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
-  //<strong>Holy guacamole!</strong> You should check in on some of those fields below.
+  <strong>Holy guacamole!</strong>.
  {{ session('success')}}
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
+@endif
 @yield('header')
         <main class="py-4">
             @yield('content')

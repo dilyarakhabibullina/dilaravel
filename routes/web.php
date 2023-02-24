@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\MyRequestController;
+use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 
 
 /*
@@ -50,7 +51,7 @@ Route::get('/categories', [CategoriesController::class, 'index']);
 
 Route::prefix('news')->group(function() {
     Route::get('/', [NewsController::class, 'index']);
-    Route::get('/{id}', [NewsController::class, 'show'])->name('showId');
+    Route::get('/{news}', [NewsController::class, 'show'])->name('showId');
     Route::get('/categories/{id}', [CategoriesController::class, 'show']);
     Route::get('/category/{slug}', [CategoriesController::class, 'showBySlug']);
     Route::get('/category/{slug}/{id}', [CategoriesController::class, 'showBySlugId']);
@@ -61,18 +62,28 @@ Route::prefix('news')->group(function() {
 
 
 Route::prefix('admin')->group(function() {
-    Route::get('/', [IndexController::class, 'index'])->name('admin.index');
+    // Route::get('/', [IndexController::class, 'index'])->name('admin.index');
     Route::get('/test1', [IndexController::class, 'test1'])->name('admin.test1');
     Route::get('/test2', [IndexController::class, 'test2'])->name('admin.test2');
     //Route::get('/addNew', [IndexController::class, 'addNew'])->name('admin.addNew');
-    Route::match(['get', 'post'], '/create', [IndexController::class, 'create'])->name('admin.create');
-
+    Route::match(['get', 'post'], '/create', [AdminNewsController::class, 'create'])->name('admin.create');
+    Route::get('/', [AdminNewsController::class, 'index'])->name('admin.index');
+    Route::get('/edit/{news}', [AdminNewsController::class, 'edit'])->name('admin.edit');
+    Route::post('/update/{news}', [AdminNewsController::class, 'update'])->name('admin.update');
+    Route::get('/destroy/{news}', [AdminNewsController::class, 'destroy'])->name('admin.destroy');
 });
+
+
+
+
 Auth::routes();
 
 Route::match(['get', 'post'], '/myRequest', [MyRequestController::class, 'myRequest'])->name('myRequest');
 
+
+
+
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/saveNews', [HomeController::class, 'saveNews'])->name ('saveNews');
-Route::get('/saveCats', [HomeController::class, 'saveCats'])->name ('saveCats');
+// Route::get('/saveNews', [HomeController::class, 'saveNews'])->name ('saveNews');
+// Route::get('/saveCats', [HomeController::class, 'saveCats'])->name ('saveCats');
