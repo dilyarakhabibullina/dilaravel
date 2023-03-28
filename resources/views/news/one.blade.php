@@ -12,7 +12,10 @@
   @if($news)
 @if(!$news->isPrivate)
 <h1>Новость номер {{$news->id}} </h1>
+<h2>{{$news->title}}</h2>
 <hr>
+
+<div><img src={{asset($news->images)}}></div>
 {{$news->inform}}
 @else
 LOG IN to USE CONTENT 

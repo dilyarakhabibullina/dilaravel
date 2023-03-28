@@ -19,6 +19,9 @@
                 <div class="card-body">
                 @forelse ($news as $item)
                 <a href="{{route('showId', $item->id) }}">{{ $item->title }}</a><br>
+                            
+               
+                <div class="card-img" style="background-image: url({{asset($item->images)}})"></div> 
 
                 @empty
    

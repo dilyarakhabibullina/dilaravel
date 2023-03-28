@@ -107,7 +107,7 @@ class NewsController extends Controller
         // if ($request->isMethod('post')){
         
         // }
-        return view('admin.update', [
+        return view('admin.create', [
             'news' => $news,
             'cats' => Category::all()
         ]);

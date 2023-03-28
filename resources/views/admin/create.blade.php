@@ -14,10 +14,16 @@
    
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><h3>{{ __('Добавление новости') }}</h3></div>
+                <div class="card-header">
+                @if ($news->id)
+                    Изменить новость
+                @else
+                <h3>Добавление новости
+            @endif </h3>
+           </div>
                 <div class="card-body">
                     
-                <form action ="{{ route('admin.create')}}" method='post'>
+                <form action ="@if (!$news->id){{ route('admin.create')}}@else {{route('admin.update', $news)}}@endif" method='post'>
                 
 @csrf
 
@@ -32,7 +38,6 @@
 <select name="categories_id" id="newsCategory" class="form-control" >
     @forelse($cats as $item)
     
-    <!-- <option value="{{ $item['id'] }}" {{$news->categories_id == $item['id'] ? 'selected' : ''}}>{{ $item['categories'] }}</option>   -->
     <option @if ($item['id'] == old('categories_id')) selected
                                                 @endif value="{{ (int)$item['id']}}">{{ $item['categories'] }}</option>
     @empty
@@ -49,7 +54,7 @@
     {{$error}}</div>
     @endforeach
 
-<input type="text" name="title" id="newsTitle" class="form-control" value="{{ old('title') }}">
+<input type="text" name="title" id="newsTitle" class="form-control" value="{{$news->title ?? old('title') }}">
 <br>
 </div>
 
@@ -72,14 +77,13 @@
     {{$error}}</div>
     @endforeach
     <input @if($news->isPrivate ==1 || old('isPrivate') == 1) checked @endif id="newsPrivate" name="isPrivate" type="checkbox" value="1" class="form-check-input">
-    <!-- <input @if(old('isPrivate') == "1") checked @endif id="newsPrivate" name="isPrivate" type="checkbox" value="1" class="form-check-input"> -->
     <label for="newsPrivate">Приватная</label>
     <br>
 </div>
 
 <br>
 <div class="form-group">
-<input type="submit" class="btn btn-outline-primary" value="Добавить новость">
+<input type="submit" class="btn btn-outline-primary" value="@if(!$news->id)Добавить новость@elseИзменить новость@endif">
 </div>
 </form>
 
